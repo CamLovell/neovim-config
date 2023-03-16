@@ -22,12 +22,13 @@ vim.cmd[[
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  
+  -- Supporting plugin for others
+  use "nvim-lua/plenary.nvim"
 
   -- Telescope
-  use({
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  })
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use ({'nvim-telescope/telescope.nvim', branch = '0.1.x'})
 
   -- ColorScheme
   use 'sainnhe/gruvbox-material'
@@ -38,13 +39,44 @@ return require('packer').startup(function(use)
    run = ':TSUpdate'
   })
 
-  -- split window navigation
-  use "christoomey/vim-tmux-navigator"
-
   -- split window maximizer
   use "szw/vim-maximizer"
   
-  -- Sync if any changes
+  -- Better Comments
+  use "numToStr/Comment.nvim"
+  
+  -- Nvim-tree
+  use "nvim-tree/nvim-tree.lua"
+  
+  -- Dev Icons
+  use "kyazdani42/nvim-web-devicons"
+
+  -- lua line
+  use "nvim-lualine/lualine.nvim"
+
+  -- lsp autocomplete
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v1.x',
+    requires = { -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      {'williamboman/mason.nvim'},           -- Optional
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},         -- Required
+      {'hrsh7th/cmp-nvim-lsp'},     -- Required
+      {'hrsh7th/cmp-buffer'},       -- Optional
+      {'hrsh7th/cmp-path'},         -- Optional
+      {'saadparwaiz1/cmp_luasnip'}, -- Optional
+      {'hrsh7th/cmp-nvim-lua'},     -- Optional
+
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},             -- Required
+      {'rafamadriz/friendly-snippets'}, -- Optional
+    }
+  }
+  -- Sync if not installed
   if packer_bootstrap then
     require('packer').sync()
   end
