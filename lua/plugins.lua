@@ -22,7 +22,7 @@ vim.cmd[[
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  
+
   -- Supporting plugin for others
   use "nvim-lua/plenary.nvim"
 
@@ -41,20 +41,20 @@ return require('packer').startup(function(use)
 
   -- split window maximizer
   use "szw/vim-maximizer"
-  
+
   -- Better Comments
   use "numToStr/Comment.nvim"
-  
+
   -- Nvim-tree
   use "nvim-tree/nvim-tree.lua"
-  
+
   -- Dev Icons
   use "kyazdani42/nvim-web-devicons"
 
   -- lua line
   use "nvim-lualine/lualine.nvim"
 
-  -- lsp autocomplete
+  -- lsp autocomplete MAY WANT TO CHANGE THIS IMPLEMENTATION TO A CUSTOM ONE NOT USING LSP-ZERO - look at the log video for this
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v1.x',
@@ -76,6 +76,16 @@ return require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'}, -- Optional
     }
   }
+
+  -- Auto closing brackets etc
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+  -- git signs
+  use("lewis6991/gitsigns.nvim")
+
   -- Sync if not installed
   if packer_bootstrap then
     require('packer').sync()
