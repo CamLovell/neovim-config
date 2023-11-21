@@ -259,6 +259,9 @@ require("ibl").setup({indent = {char = '┊',}})
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- Tabstop and shiftwidth
+
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -554,7 +557,9 @@ local servers = {
   clangd = {},
   jedi_language_server = {},
   rust_analyzer = {},
-
+  cmake = {},
+  marksman = {},
+  tsserver = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
