@@ -111,6 +111,7 @@ require('lazy').setup({
     },
   },
 
+  {'tikhomirov/vim-glsl'},
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {
@@ -252,14 +253,15 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
 }, {})
 
+-- GLSL Support
+require('lspconfig').glsl_analyzer.setup{}
+
 require("ibl").setup({indent = {char = '┊',}})
 -- require("ibl").setup({ char = '┊',
 --       show_trailing_blankline_indent = false})
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
-
--- Tabstop and shiftwidth
 
 
 -- Set highlight on search
@@ -405,13 +407,13 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'bash', 'javascript'},
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
 
     -- List of parsers to ignore installing (or "all")
-    ignore_install = { "javascript" },
+    ignore_install = {},
 
     -- Modules thing to stop 
     modules = {},
@@ -615,10 +617,10 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
+    -- ['<CR>'] = cmp.mapping.confirm {
+    --   behavior = cmp.ConfirmBehavior.Replace,
+    --   select = true,
+    -- },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -643,6 +645,11 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- Disable auto comment on enter
+vim.opt.formatoptions = 'ct'
+vim.opt_local.formatoptions = 'ct'
+-- vim.opt_local.formatoptions = vim.opt.formatoptions + 'o' + 'r'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
