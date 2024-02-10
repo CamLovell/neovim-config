@@ -534,6 +534,7 @@ local servers = {
   rust_analyzer = {},
   cmake = {},
   marksman = {},
+  tsserver = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
