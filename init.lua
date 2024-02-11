@@ -51,15 +51,15 @@ require('lazy').setup({
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       {
         'j-hui/fidget.nvim',
-        -- tag = 'legacy',
+        tag = 'legacy',
         opts = {
-          progress = {
-            suppress_on_insert=true,
-            display = {
-              render_limit = 2,
-              done_ttl = 1
-            }
-          },
+          -- progress = {
+          --   suppress_on_insert=true,
+          --   display = {
+          --     render_limit = 2,
+          --     done_ttl = 1
+          --   }
+          -- },
         }
       },
 
