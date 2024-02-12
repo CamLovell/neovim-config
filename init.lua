@@ -387,7 +387,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'bash', 'javascript'},
+    ensure_installed = { 'c', 'cpp', 'cmake', 'lua', 'vim', 'query', 'python', 'rust', 'vimdoc', 'vim', 'bash', 'javascript', 'typescript'},
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
