@@ -84,7 +84,9 @@ require('lazy').setup({
     },
   },
 
+  -- Syntax highlighting for glsl -- should be able to do this with lsp?
   {'tikhomirov/vim-glsl'},
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {
@@ -149,7 +151,7 @@ require('lazy').setup({
         icons_enabled = true,
         theme = 'gruvbox-material',
         component_separators = '|',
-        section_separators = '',
+        -- section_separators = '',
       },
     },
   },
@@ -165,13 +167,13 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-  
+
   -- TODO notes etc.
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
-  }, 
+  },
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
@@ -541,7 +543,7 @@ local servers = {
   rust_analyzer = {},
   cmake = {},
   marksman = {},
-  tsserver = {},
+  -- tsserver = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
