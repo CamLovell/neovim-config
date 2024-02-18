@@ -86,7 +86,7 @@ require('lazy').setup({
   --       want to set up auto format and debug stuff
   --
   -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
+  -- require('plugins.debug'),
 }, {})
 
 -- GLSL Support
