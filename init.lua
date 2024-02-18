@@ -25,9 +25,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
-  -- Git related plugins
-  'tpope/vim-fugitive', -- basically gives git functionality to neovim
-  'tpope/vim-rhubarb', -- Adds some functionality surrouding github etc
+  require('plugins.git_things'),
 
   -- Detect tabstop and shiftwidth automatically
   -- make sure use have a .editorconfig in the root directory that sets
