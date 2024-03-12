@@ -77,7 +77,7 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {},
-  jedi_language_server = {},
+  -- jedi_language_server = {},
   rust_analyzer = {},
   cmake = {},
   marksman = {},
