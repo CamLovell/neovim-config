@@ -26,7 +26,7 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git functionality related stuff (for visual representations see plugins.visual)
-  require('plugins.git'),
+  -- require('plugins.git'),
 
   -- All the lsp things
   require('plugins.lsp'),
@@ -34,8 +34,8 @@ require('lazy').setup({
   -- Visual things (colorscheme, indenting, status line, etc.)
   require('plugins.visual'),
 
-  -- Commenting related stuff
-  require('plugins.commenting'),
+  -- Comment commends like gc
+  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -55,6 +55,10 @@ require('lazy').setup({
           return vim.fn.executable 'make' == 1
         end,
       },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
+
+      -- Useful for getting pretty icons, but requires a Nerd Font.
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
   },
 
