@@ -25,34 +25,6 @@ return {
     end,
   },
 
-  -- Adds git related signs to the gutter, as well as utilities for managing changes
-  {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-  -- An actually good theme which I can read, ahhh being colour blind
-  {
-    'sainnhe/gruvbox-material',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    config = function()
-      vim.g.gruvbox_material_background = 'medium'
-      vim.g.gruvbox_material_transparent_background = 0
-      vim.g.gruvbox_material_foreground = 'material'
-      vim.cmd.colorscheme 'gruvbox-material'
-    end,
-  },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -62,7 +34,7 @@ return {
         icons_enabled = true,
         theme = 'gruvbox-material',
         component_separators = '|',
-        -- section_separators = '',
+        section_separators = '',
       },
     },
   },
@@ -78,12 +50,4 @@ return {
   --     require('ibl').setup { indent = { char = '┊' } }
   --   end,
   -- },
-
-  -- TODO notes etc.
-  {
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {},
-  },
 }

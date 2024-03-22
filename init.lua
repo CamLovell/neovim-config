@@ -32,13 +32,38 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git functionality related stuff (for visual representations see plugins.visual)
-  -- require('plugins.git'),
+  require 'plugins.git',
+
+  -- Plugins from the mini ecosystems
+  require 'plugins.mini',
 
   -- All the lsp things
   require 'plugins.lsp',
 
   -- Visual things (colorscheme, indenting, status line, etc.)
   require 'plugins.visual',
+
+  -- An actually good theme which I can read, ahhh being colour blind
+  {
+    'sainnhe/gruvbox-material',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      vim.g.gruvbox_material_background = 'medium'
+      vim.g.gruvbox_material_transparent_background = 0
+      vim.g.gruvbox_material_foreground = 'material'
+      vim.cmd.colorscheme 'gruvbox-material'
+    end,
+  },
+
+  -- TODO notes etc.
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {},
+  },
 
   -- Comment commends like gc
   { 'numToStr/Comment.nvim', opts = {} },

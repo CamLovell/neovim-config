@@ -26,6 +26,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Keymaps for splits
+vim.keymap.set('n', '<leader>vs', ':vsplit<CR>', { desc = 'Split the current window vertically' })
+vim.keymap.set('n', '<leader>hs', ':split<CR>', { desc = 'Split the current window horizontally' })
 
 -- Disable arrow keys in normal mode - LEARN VIM PROPERLY
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -37,4 +40,4 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Copy all
-vim.keymap.set('n', 'yA', 'ggVGy', {desc = 'Copy entire file'})
+vim.keymap.set('n', 'yA', 'ggVGy', { desc = 'Copy entire file' })

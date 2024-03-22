@@ -7,7 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.wrap = false
 
 -- tell Neovim we have a nerd font
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- Enable mouse mode
 vim.opt.mouse = 'a'
