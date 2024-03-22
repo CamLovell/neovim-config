@@ -5,7 +5,7 @@ return {
   -- make sure use have a .editorconfig in the root directory that sets
   -- tabstop to 4 otherwise this will be annoying not helpful
   -- good when editing other peoples files though
-  {'tpope/vim-sleuth'},
+  { 'tpope/vim-sleuth' },
 
   -- Shows potential and pending keybinds, useful while still learning
   { -- Useful plugin to show you pending keybinds.
@@ -41,7 +41,7 @@ return {
   },
   -- An actually good theme which I can read, ahhh being colour blind
   {
-    "sainnhe/gruvbox-material",
+    'sainnhe/gruvbox-material',
     lazy = false,
     priority = 1000,
     opts = {},
@@ -67,19 +67,23 @@ return {
     },
   },
 
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
-  },
+  -- {
+  --   -- Add indentation guides even on blank lines
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   -- Enable `lukas-reineke/indent-blankline.nvim`
+  --   -- See `:help ibl`
+  --   main = 'ibl',
+  --   opts = {},
+  --   config = function()
+  --     require('ibl').setup { indent = { char = '┊' } }
+  --   end,
+  -- },
 
   -- TODO notes etc.
   {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {},
   },
 }

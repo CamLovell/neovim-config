@@ -1,6 +1,12 @@
--- Set <space> as the leader key local and global
+--Set <space> as the leader key local and global
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Set vim options
+require 'options'
+
+-- Set custom keymaps
+require 'keymaps'
 
 -- Install Lazy plugin manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -29,82 +35,34 @@ require('lazy').setup({
   -- require('plugins.git'),
 
   -- All the lsp things
-  require('plugins.lsp'),
+  require 'plugins.lsp',
 
   -- Visual things (colorscheme, indenting, status line, etc.)
-  require('plugins.visual'),
+  require 'plugins.visual',
 
   -- Comment commends like gc
   { 'numToStr/Comment.nvim', opts = {} },
 
-  -- Fuzzy Finder (files, lsp, etc)
+  require 'plugins.telescope',
+  require 'plugins.treesitter',
   {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-      -- Only load if `make` is available. Make sure you have the system
-      -- requirements installed.
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-    },
-  },
-
-  {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    build = ':TSUpdate',
-  },
-
-  {
-    "windwp/nvim-autopairs",
+    'windwp/nvim-autopairs',
     -- Optional dependency
     dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
-      require("nvim-autopairs").setup {}
+      require('nvim-autopairs').setup {}
       -- If you want to automatically add `(` after selecting a function or method
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      local cmp = require('cmp')
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
+      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      local cmp = require 'cmp'
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
   -- TODO: look into the below things (not in that location anymore)
   --       want to set up auto format and debug stuff
-  --
+
   -- require 'kickstart.plugins.autoformat',
   -- require('plugins.debug'),
 }, {})
-
--- GLSL Support
-require('lspconfig').glsl_analyzer.setup{}
-
-require("ibl").setup({indent = {char = '┊',}})
--- require("ibl").setup({ char = '┊',
---       show_trailing_blankline_indent = false})
-
--- Set vim options
-require('options')
-
--- Set custom keymaps
-require('keymaps')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -117,17 +75,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Configure telescope in another file (alot of crap)
-require('plugins.telescope_config')
-
--- Configure treesitter in another file
-require('plugins.treesitter_config')
-
--- Configure lsp in anoth file
-require('plugins.lsp_config')
-
 -- Configure nvim-cmp
-require('plugins.nvim_cmp_config')
+-- require 'plugins.nvim_cmp_config'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

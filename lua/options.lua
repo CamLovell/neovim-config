@@ -2,44 +2,44 @@
 -- See `:help vim.o`
 
 -- Make line numbers default
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.wrap = false
 
 -- tell Neovim we have a nerd font
 vim.g.have_nerd_font = false
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 -- Mode in status line, dont need to show
 vim.opt.showmode = false
 
 -- Save undo history
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 
 -- show line which cursor is on
 vim.opt.cursorline = false
 
 -- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
--- Split windows down and right 
+-- Split windows down and right
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
@@ -53,10 +53,10 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'menuone,noselect'
 
 -- Make sure we get good colours
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
 -- Disable auto comment on enter
 vim.opt.formatoptions = 'ct'
