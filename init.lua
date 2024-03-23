@@ -29,20 +29,6 @@ vim.opt.rtp:prepend(lazypath)
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
-
-  -- Git functionality related stuff (for visual representations see plugins.visual)
-  require 'plugins.git',
-
-  -- Plugins from the mini ecosystems
-  require 'plugins.mini',
-
-  -- All the lsp things
-  require 'plugins.lsp',
-
-  -- Visual things (colorscheme, indenting, status line, etc.)
-  require 'plugins.visual',
-
   -- An actually good theme which I can read, ahhh being colour blind
   {
     'sainnhe/gruvbox-material',
@@ -68,8 +54,7 @@ require('lazy').setup({
   -- Comment commends like gc
   { 'numToStr/Comment.nvim', opts = {} },
 
-  require 'plugins.telescope',
-  require 'plugins.treesitter',
+  -- auto pairing of quotes, brackets, etc.
   {
     'windwp/nvim-autopairs',
     -- Optional dependency
@@ -82,11 +67,66 @@ require('lazy').setup({
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
+  -- Detect tabstop and shiftwidth automatically
+  -- make sure use have a .editorconfig in the root directory that sets
+  -- tabstop to 4 otherwise this will be annoying not helpful
+  -- good when editing other peoples files though
+  { 'tpope/vim-sleuth' },
+
+  -- Shows potential and pending keybinds, useful while still learning
+  { -- Useful plugin to show you pending keybinds.
+    'folke/which-key.nvim',
+    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    config = function() -- This is the function that runs, AFTER loading
+      require('which-key').setup()
+
+      -- Document existing key chains
+      require('which-key').register {
+        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      }
+    end,
+  },
+
+  -- Lualine for status line
+  -- mini has an option, dont think its as good
+  -- could be worth checking out https://github.com/famiu/feline.nvim
+
+  {
+    -- Set lualine as statusline
+    'nvim-lualine/lualine.nvim',
+    -- See `:help lualine.txt`
+    opts = {
+      options = {
+        icons_enabled = true,
+        theme = 'gruvbox-material',
+        component_separators = '|',
+        section_separators = '',
+      },
+    },
+  },
+
+  -- Git stuff
+  require 'plugins.git',
+
+  -- Plugins from the mini ecosystems
+  require 'plugins.mini',
+
+  -- All the lsp things
+  require 'plugins.lsp',
+
+  -- Visual things (colorscheme, indenting, status line, etc.)
+  require 'plugins.visual',
+
   -- TODO: look into the below things (not in that location anymore)
   --       want to set up auto format and debug stuff
 
-  -- require 'kickstart.plugins.autoformat',
   -- require('plugins.debug'),
+  require 'plugins.telescope',
+  require 'plugins.treesitter',
 }, {})
 
 -- [[ Highlight on yank ]]
@@ -99,9 +139,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
--- Configure nvim-cmp
--- require 'plugins.nvim_cmp_config'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
