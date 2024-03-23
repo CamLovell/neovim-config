@@ -1,4 +1,4 @@
--- This file is for lsp things
+-- This file is for lsp thingslsp
 
 return {
   -- NOTE: This is where your plugins related to LSP can be installed.
@@ -6,7 +6,6 @@ return {
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    event = 'VimEnter',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
@@ -144,7 +143,7 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        -- pyright = {},
+        pyright = {},
         rust_analyzer = {},
         cmake = {},
         marksman = {},
@@ -173,12 +172,7 @@ return {
         },
       }
 
-      -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      --
-      --  You can press `g?` for help in this menu
+      -- run mason setup
       require('mason').setup {
         ui = {
           icons = {
@@ -189,15 +183,10 @@ return {
         },
       }
 
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format lua code
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
+      -- Ensure the deired servers are installed and setup mason
+      local server_list = vim.tbl_keys(servers or {})
       require('mason-lspconfig').setup {
+        ensure_installed = server_list,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -209,6 +198,13 @@ return {
           end,
         },
       }
+
+      local tool_list = {
+        'stylua', -- Used to format lua code
+        'isort',
+        'black',
+      }
+      require('mason-tool-installer').setup { ensure_installed = tool_list }
     end,
   },
 
@@ -223,7 +219,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
@@ -234,7 +230,7 @@ return {
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
+    event = 'VimEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
@@ -328,6 +324,7 @@ return {
   -- Syntax highlighting for glsl -- should be able to do this with lsp?
   {
     'tikhomirov/vim-glsl',
+    event = 'VeryLazy',
     config = function()
       -- GLSL Support
       require('lspconfig').glsl_analyzer.setup {}

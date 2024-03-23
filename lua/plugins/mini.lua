@@ -19,7 +19,7 @@ return {
       require('mini.move').setup()
 
       -- simple indent line only showing current scope
-      -- require('mini.indentscope').setup { draw = { delay = 20, animation = require('mini.indentscope').gen_animation.none() } }
+      require('mini.indentscope').setup { draw = { delay = 20, animation = require('mini.indentscope').gen_animation.none() } }
 
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,

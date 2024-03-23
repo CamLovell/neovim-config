@@ -36,7 +36,7 @@ require('lazy').setup({
     priority = 1000,
     opts = {},
     config = function()
-      vim.g.gruvbox_material_background = 'medium'
+      vim.g.gruvboxf_material_background = 'medium'
       vim.g.gruvbox_material_transparent_background = 0
       vim.g.gruvbox_material_foreground = 'material'
       vim.cmd.colorscheme 'gruvbox-material'
@@ -76,7 +76,7 @@ require('lazy').setup({
   -- Shows potential and pending keybinds, useful while still learning
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    event = 'VeryLazy', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
 
@@ -109,22 +109,18 @@ require('lazy').setup({
     },
   },
 
+  -- All the lsp things
+  require 'plugins.lsp',
+
   -- Git stuff
   require 'plugins.git',
 
   -- Plugins from the mini ecosystems
   require 'plugins.mini',
 
-  -- All the lsp things
-  require 'plugins.lsp',
-
-  -- Visual things (colorscheme, indenting, status line, etc.)
-  require 'plugins.visual',
-
   -- TODO: look into the below things (not in that location anymore)
   --       want to set up auto format and debug stuff
-
-  -- require('plugins.debug'),
+  require 'plugins.debug',
   require 'plugins.telescope',
   require 'plugins.treesitter',
 }, {})
