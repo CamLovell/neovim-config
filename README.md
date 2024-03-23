@@ -1,5 +1,7 @@
 # Config dependencies:
 - ripgrep
+- nodejs (because of pyright)
+    - install from the node website (just google it, ill put isntructions here at some point)
 - xclip
 - python3
 - python3-pip
