@@ -1,10 +1,15 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
--- Make line numbers default
+-- Make relative line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+-- line wrapping settings
 vim.opt.wrap = false
+vim.opt.linebreak = true
+
+vim.opt.ruler = false
 
 -- tell Neovim we have a nerd font
 vim.g.have_nerd_font = true
@@ -25,12 +30,19 @@ vim.opt.showmode = false
 -- Save undo history
 vim.opt.undofile = true
 
+-- Enable all filetype plugins
+vim.cmd 'filetype plugin indent on'
+
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.incsearch = true
+vim.opt.infercase = true
+vim.opt.smartindent = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
+vim.opt.fillchars = 'eob: '
 
 -- show line which cursor is on
 vim.opt.cursorline = false
@@ -58,10 +70,23 @@ vim.opt.completeopt = 'menuone,noselect'
 -- Make sure we get good colours
 vim.opt.termguicolors = true
 
--- Disable auto comment on enter
-vim.opt.formatoptions = 'ct'
-vim.opt_local.formatoptions = 'ct'
--- vim.opt_local.formatoptions = vim.opt.formatoptions + 'o' + 'r'
-
+-- Disable auto comment on enter - setting formatoptions directly doesnt wokr
+-- you must use this auto command to set it on file load
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = '*',
+  callback = function()
+    vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
+  end,
+})
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+-- Auto command to start terminal in insert mode
+local start_terminal_insert = vim.schedule_wrap(function(data)
+  -- Try to start terminal mode only if target terminal is current
+  if not (vim.api.nvim_get_current_buf() == data.buf and vim.bo.buftype == 'terminal') then
+    return
+  end
+  vim.cmd 'startinsert'
+end)
+vim.api.nvim_create_autocmd('TermOpen', { pattern = 'term://*', callback = start_terminal_insert, desc = 'Start builtin terminal in Insert mode' })

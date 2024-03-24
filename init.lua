@@ -2,9 +2,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set vim options
-require 'options'
-
 -- Set custom keymaps
 require 'keymaps'
 
@@ -62,9 +59,9 @@ require('lazy').setup({
     config = function()
       require('nvim-autopairs').setup {}
       -- If you want to automatically add `(` after selecting a function or method
-      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-      local cmp = require 'cmp'
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+      -- local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      -- local cmp = require 'cmp'
+      -- cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
   -- Detect tabstop and shiftwidth automatically
@@ -94,7 +91,6 @@ require('lazy').setup({
   -- Lualine for status line
   -- mini has an option, dont think its as good
   -- could be worth checking out https://github.com/famiu/feline.nvim
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -107,6 +103,20 @@ require('lazy').setup({
         section_separators = '',
       },
     },
+  },
+
+  -- harpoon for better file nav
+  { 'ThePrimeagen/harpoon' },
+
+  -- markdown preview
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && yarn install',
+    init = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
   },
 
   -- All the lsp things
@@ -136,5 +146,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- Set vim options
+require 'options'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

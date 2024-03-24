@@ -26,6 +26,12 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Resize windows with Alt hjkl
+vim.keymap.set('n', '<C-Left>', '"<Cmd>vertical resize -" . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Decrease window width' })
+vim.keymap.set('n', '<C-Down>', '"<Cmd>resize -"          . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Decrease window height' })
+vim.keymap.set('n', '<C-Up>', '"<Cmd>resize +"          . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Increase window height' })
+vim.keymap.set('n', '<C-Right>', '"<Cmd>vertical resize +" . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Increase window width' })
+
 -- Keymaps for splits
 vim.keymap.set('n', '<leader>vs', ':vsplit<CR>', { desc = 'Split the current window vertically' })
 vim.keymap.set('n', '<leader>hs', ':split<CR>', { desc = 'Split the current window horizontally' })
@@ -41,3 +47,13 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 -- Copy all
 vim.keymap.set('n', 'yA', 'ggVGy', { desc = 'Copy entire file' })
+
+-- Insert lines above and below by holding Alt and pressing O or o
+vim.keymap.set('n', '<M-O>', 'O<Esc>', { desc = 'Put empty line above' })
+vim.keymap.set('n', '<M-o>', 'o<Esc>', { desc = 'Put empty line below' })
+
+-- Harpoon Keymaps
+vim.keymap.set('n', '<leader>hf', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { desc = 'Find Hapoon Files' })
+vim.keymap.set('n', '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<CR>', { desc = 'Add Harpoon File' })
+vim.keymap.set('n', '<leader>hn', '<cmd>lua require("harpoon.ui").nav_next()<CR>', { desc = 'Next harpoon file' })
+vim.keymap.set('n', '<leader>hp', '<cmd>lua require("harpoon.ui").nav_prev()<CR>', { desc = 'Previous harpoon file' })

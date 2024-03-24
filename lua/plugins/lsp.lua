@@ -257,7 +257,7 @@ return {
       --    you can use this plugin to help you. It even has snippets
       --    for various frameworks/libraries/etc. but you will have to
       --    set up the ones that are useful for you.
-      -- 'rafamadriz/friendly-snippets',
+      'rafamadriz/friendly-snippets',
     },
     config = function()
       -- See `:help cmp`
@@ -318,6 +318,8 @@ return {
           { name = 'path' },
         },
       }
+      -- Load friendly snippets
+      require('luasnip.loaders.from_vscode').lazy_load()
     end,
   },
 
