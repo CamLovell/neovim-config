@@ -52,8 +52,18 @@ vim.keymap.set('n', 'yA', 'ggVGy', { desc = 'Copy entire file' })
 vim.keymap.set('n', '<M-O>', 'O<Esc>', { desc = 'Put empty line above' })
 vim.keymap.set('n', '<M-o>', 'o<Esc>', { desc = 'Put empty line below' })
 
+-- TODO: Check if the following can be done "better"
+
 -- Harpoon Keymaps
 vim.keymap.set('n', '<leader>hf', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { desc = 'Find Hapoon Files' })
 vim.keymap.set('n', '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<CR>', { desc = 'Add Harpoon File' })
 vim.keymap.set('n', '<leader>hn', '<cmd>lua require("harpoon.ui").nav_next()<CR>', { desc = 'Next harpoon file' })
 vim.keymap.set('n', '<leader>hp', '<cmd>lua require("harpoon.ui").nav_prev()<CR>', { desc = 'Previous harpoon file' })
+
+-- Markdown Keymaps
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', { buffer = true, desc = 'Toggle markdown preview' })
+  end,
+})
