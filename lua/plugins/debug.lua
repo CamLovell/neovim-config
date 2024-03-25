@@ -43,7 +43,7 @@ return {
         'debugpy',
       },
     }
-    require('dap-python').setup '/usr/bin/python3'
+    require('dap-python').setup '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python3'
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
