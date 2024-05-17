@@ -26,10 +26,13 @@ return {
     },
     config = function()
       -- See `:help telescope` and `:help telescope.setup()`
+      local actions = require 'telescope.actions'
       require('telescope').setup {
         defaults = {
           mappings = {
-            i = {},
+            i = {
+              ['<esc>'] = actions.close,
+            },
           },
           file_ignore_patterns = { '_PYTHON39/*', '__pychache__/*' },
         },
