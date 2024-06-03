@@ -214,7 +214,7 @@ return {
     opts = {
       notify_on_error = false,
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 1000,
         lsp_fallback = true,
       },
       formatters_by_ft = {
@@ -337,13 +337,13 @@ return {
   {
     'linux-cultist/venv-selector.nvim',
     dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+    ft = { 'python' },
     opts = {
       -- Your options go here
       auto_refresh = true,
       dap_enabled = true,
       name = { 'venv', '.venv', '.env', 'env' },
     },
-    event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
     keys = {
       -- Keymap to open VenvSelector to pick a venv.
       { '<leader>ps', '<cmd>VenvSelect<cr>' },
