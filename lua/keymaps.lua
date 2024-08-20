@@ -67,3 +67,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', { buffer = true, desc = 'Toggle markdown preview' })
   end,
 })
+
+-- Docstring generation
+vim.keymap.set('n', '<leader>gd', "<cmd>lua require('neogen').generate()<CR>", { desc = '[G]enerate [D]ocumentation' })
