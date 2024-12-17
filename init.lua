@@ -58,10 +58,16 @@ require('lazy').setup({
     dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
       require('nvim-autopairs').setup {}
+
       -- If you want to automatically add `(` after selecting a function or method
       local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
       local cmp = require 'cmp'
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+      cmp.event:on('confirm_done', function(event)
+        local filetype = vim.bo.filetype
+        if filetype ~= 'rust' then
+          cmp_autopairs.on_confirm_done()(event)
+        end
+      end)
     end,
   },
   -- Detect tabstop and shiftwidth automatically
@@ -138,6 +144,8 @@ require('lazy').setup({
   require 'plugins.debug',
   require 'plugins.telescope',
   require 'plugins.treesitter',
+
+  -- require 'plugins.remote',
 }, {})
 
 -- [[ Highlight on yank ]]
