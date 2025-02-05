@@ -30,6 +30,12 @@ vim.opt.showmode = false
 -- Save undo history
 vim.opt.undofile = true
 
+-- Default tab/space behaviour
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+
 -- Enable all filetype plugins
 vim.cmd 'filetype plugin indent on'
 

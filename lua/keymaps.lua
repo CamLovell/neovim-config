@@ -52,6 +52,13 @@ vim.keymap.set('n', 'yA', 'ggVGy', { desc = 'Copy entire file' })
 vim.keymap.set('n', '<M-O>', 'O<Esc>', { desc = 'Put empty line above' })
 vim.keymap.set('n', '<M-o>', 'o<Esc>', { desc = 'Put empty line below' })
 
+-- Source current file
+vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>')
+
+-- Lua execution
+vim.keymap.set('n', '<leader>x', ':.lua<CR>')
+vim.keymap.set('v', '<leader>x', ':lua<CR>')
+
 -- TODO: Check if the following can be done "better"
 
 -- Harpoon Keymaps
