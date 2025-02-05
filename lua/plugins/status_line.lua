@@ -6,7 +6,7 @@ return {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
-    enabled = true,
+    enabled = false,
     opts = {
       options = {
         icons_enabled = true,
@@ -16,5 +16,4 @@ return {
       },
     },
   },
-  -- { 'echasnovski/mini.statusline', version = '*' },
 }

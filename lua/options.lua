@@ -76,6 +76,9 @@ vim.opt.completeopt = 'menuone,noselect'
 -- Make sure we get good colours
 vim.opt.termguicolors = true
 
+-- Set command bar to 0 height
+vim.opt.cmdheight = 0
+
 -- Disable auto comment on enter - setting formatoptions directly doesnt wokr
 -- you must use this auto command to set it on file load
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
