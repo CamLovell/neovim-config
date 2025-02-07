@@ -53,7 +53,7 @@ vim.keymap.set('n', '<M-O>', 'O<Esc>', { desc = 'Put empty line above' })
 vim.keymap.set('n', '<M-o>', 'o<Esc>', { desc = 'Put empty line below' })
 
 -- Source current file
-vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>')
+-- vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>')
 
 -- Lua execution
 vim.keymap.set('n', '<leader>x', ':.lua<CR>')

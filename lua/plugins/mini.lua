@@ -2,29 +2,58 @@ return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
-      -- Better Around/Inside textobjects
-      --
-      -- Examples:
-      --  - yinq - [Y]ank [I]nside [N]ext [']quote
-      --  - va)  - [V]isually select [A]round [)]paren
-      --  - ci'  - [C]hange [I]nside [']quote
+      -- improved 'a' and 'i' motions
       require('mini.ai').setup { n_lines = 500 }
-
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
+      -- add/delete/replace surrounding characters ()/{}/[]/""/''
       require('mini.surround').setup()
+      -- use alt to move lines around
       require('mini.move').setup()
+      -- automatically put in pairs e.g. ()
+      -- require('mini.pairs').setup()
 
-      -- Simple file explorer (with toggle mapped to <leader>fd
+      -- use '[' and ']' to jump back and forward between various thins 'q' for quickfix is good
+      require('mini.bracketed').setup()
+
+      -- Replace gitsigns
+      require('mini.git').setup()
+      require('mini.diff').setup {
+        view = {
+          style = 'sign',
+          signs = { add = '+', change = '~', delete = '-' },
+          priority = 199,
+        },
+      }
+
+      -- Highilight word on hover throughout document
+      require('mini.cursorword').setup { delay = 500 }
+
+      -- Extra functionality (including more text objects)
+      require('mini.extra').setup()
+
+      -- Extend f, F, t, T accross multiple lines
+      require('mini.jump').setup()
+
+      -- Icon Provider, similar to web-dev-icons but better
+      -- NOTE: web-dev-icons is still a dependency of telescope
+      require('mini.icons').setup()
+
+      -- Nice starter screen
+      require('mini.starter').setup()
+
+      -- Session manager
+      -- require('mini.sessions').setup()
+
+      -- Simple file explorer (with toggle mapped to <leader>fd)
       require('mini.files').setup()
       vim.keymap.set('n', '<leader>fd', ':lua if not MiniFiles.close() then MiniFiles.open(...) end<CR>', { desc = 'Open [F]ile [D]irectory' })
 
       -- simple indent line only showing current scope
       require('mini.indentscope').setup { draw = { delay = 20, animation = require('mini.indentscope').gen_animation.none() } }
 
+      -- Nicer tabline, not that I really use tabs
+      require('mini.tabline').setup { set_vim_settings = false }
+
+      -- stuatusline, default with macro recorsding indicator
       require('mini.statusline').setup {
         content = {
           active = function()
