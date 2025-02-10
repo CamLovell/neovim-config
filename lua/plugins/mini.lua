@@ -20,7 +20,7 @@ return {
         view = {
           style = 'sign',
           signs = { add = '+', change = '~', delete = '-' },
-          priority = 199,
+          priority = 1,
         },
       }
 
