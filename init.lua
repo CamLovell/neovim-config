@@ -2,8 +2,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set custom keymaps
+-- Set custom keymaps and options
 require 'keymaps'
+require 'options'
+
+-- Install lazy and all the plugins
 require 'config.lazy'
 
 -- [[ Highlight on yank ]]
@@ -22,7 +25,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- splits it will open it up on the bottom where it is easier to read
 vim.api.nvim_create_autocmd({ 'WinNew', 'BufWinEnter' }, {
   callback = function()
-    if vim.bo.filetype ~= 'help' then
+    if vim.bo.filetype ~= 'help' or vim.api.nvim_win_get_config(0).relative ~= '' then
       return
     end
 
@@ -37,7 +40,5 @@ vim.api.nvim_create_autocmd({ 'WinNew', 'BufWinEnter' }, {
   end,
 })
 
--- Set vim options
-require 'options'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
