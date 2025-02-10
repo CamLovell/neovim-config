@@ -99,3 +99,5 @@ local start_terminal_insert = vim.schedule_wrap(function(data)
   vim.cmd 'startinsert'
 end)
 vim.api.nvim_create_autocmd('TermOpen', { pattern = 'term://*', callback = start_terminal_insert, desc = 'Start builtin terminal in Insert mode' })
+
+vim.diagnostic.config { virtual_text = true }
