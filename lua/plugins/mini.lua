@@ -1,9 +1,27 @@
 return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    version = false,
     config = function()
       -- improved 'a' and 'i' motions
-      require('mini.ai').setup { n_lines = 500 }
+      local ai = require 'mini.ai'
+      ai.setup {
+        n_lines = 500,
+        custom_textobjects = {
+          o = ai.gen_spec.treesitter { -- code block
+            a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+            i = { '@block.inner', '@conditional.inner', '@loop.inner' },
+          },
+          f = ai.gen_spec.treesitter { a = { '@function.outer', '@method.outer' }, i = { '@function.inner', '@method.outer' } }, -- function
+          c = ai.gen_spec.treesitter { a = '@class.outer', i = '@class.inner' }, -- class
+          t = { '<([%p%w]-)%f[^<%w][^<>]->.-</%1>', '^<.->().*()</[^/]->$' }, -- tags
+          d = { '%f[%d]%d+' }, -- digits
+          e = { -- word with case
+            { '%u[%l%d]+%f[^%l%d]', '%f[%s][%l%d]+%f[^%l%d]', '%f[%p][%l%d]+%f[^%l%d]', '^[%l%d]+%f[^%l%d]' },
+            '^().*()$',
+          },
+        },
+      }
       -- add/delete/replace surrounding characters ()/{}/[]/""/''
       require('mini.surround').setup()
       -- use alt to move lines around
