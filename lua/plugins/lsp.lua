@@ -8,8 +8,30 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- lsp installation automated
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      {
+        'williamboman/mason.nvim',
+        opts = {
+          ui = {
+            icons = {
+              package_installed = '✓',
+              package_pending = '➜',
+              package_uninstalled = '✗',
+            },
+          },
+        },
+      },
+      {
+        'williamboman/mason-lspconfig.nvim',
+        opts = {
+          {
+            ensure_installed = {
+              'stylua',
+              'debugpy',
+              'prettier',
+            },
+          },
+        },
+      },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Completions
@@ -91,7 +113,6 @@ return {
                   reportUnnecessaryTypeIgnoreComment = false,
                   reportUnreachable = false,
                 },
-                -- ignore = {'*'},
               },
             },
           },
@@ -120,17 +141,6 @@ return {
         },
       }
 
-      -- run mason setup
-      require('mason').setup {
-        ui = {
-          icons = {
-            package_installed = '✓',
-            package_pending = '➜',
-            package_uninstalled = '✗',
-          },
-        },
-      }
-
       -- Ensure the deired servers are installed and setup mason
       local server_list = vim.tbl_keys(servers or {})
       require('mason-lspconfig').setup {
@@ -144,14 +154,6 @@ return {
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
-        },
-      }
-
-      require('mason-tool-installer').setup {
-        ensure_installed = {
-          'stylua', -- Used to format lua code
-          'debugpy',
-          'prettier',
         },
       }
     end,
