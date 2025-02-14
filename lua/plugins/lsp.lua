@@ -90,6 +90,11 @@ return {
       local servers = {
         clangd = {},
         basedpyright = {
+          -- Disable semantic tokens because they SUCK (atleast for basedpyright)
+          on_init = function(client)
+            client.server_capabilities.semanticTokensProvider = nil
+          end,
+
           settings = {
             basedpyright = {
               disableOrganizeImports = true,
