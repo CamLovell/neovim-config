@@ -130,7 +130,10 @@ return {
             },
           },
         },
-        rust_analyzer = {},
+        -- avoid enabling to ensure system toolchain version matches
+        -- rustaceanvim will find the system version
+        -- use `rustup component add rust_analyzer` to install
+        -- rust_analyzer = {},
         cmake = {},
         marksman = {},
         lua_ls = {
@@ -153,6 +156,10 @@ return {
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
+            -- Don't enable rust_analyzer here, rustaceanvim will take care of that
+            if server_name == 'rust_analyzer' then
+              return
+            end
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
