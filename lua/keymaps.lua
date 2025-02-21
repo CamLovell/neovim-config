@@ -52,6 +52,10 @@ vim.keymap.set('n', 'yA', 'ggVGy', { desc = 'Copy entire file' })
 vim.keymap.set('n', '<M-O>', 'O<Esc>', { desc = 'Put empty line above' })
 vim.keymap.set('n', '<M-o>', 'o<Esc>', { desc = 'Put empty line below' })
 
+-- Centre cursor on screen when using half page jumps
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move half page up' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move half page down' })
+
 -- Source current file
 -- vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>')
 
