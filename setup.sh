@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 # Install build dependencies
-sudo apt-get install ninja-build gettext cmake curl build-essential
+sudo apt-get install -y ninja-build gettext cmake curl build-essential ripgrep xclip fd-find
 
 # Get neovim
 git clone https://www.github.com/neovim/neovim $HOME/neovim

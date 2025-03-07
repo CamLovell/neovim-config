@@ -2,9 +2,7 @@ return {
   {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
-    dependencies = {
-      'rafamadriz/friendly-snippets',
-    },
+    dependencies = { 'rafamadriz/friendly-snippets' },
 
     -- use a release tag to download pre-built binaries
     version = '*',
@@ -36,7 +34,19 @@ return {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
 
+      cmdline = {
+        enabled = true,
+        completion = {
+          menu = { auto_show = true },
+          ghost_text = { enabled = false },
+        },
+      },
+
       completion = {
+        documentation = {
+          auto_show = false,
+          auto_show_delay_ms = 500,
+        },
         menu = {
           draw = {
             components = {

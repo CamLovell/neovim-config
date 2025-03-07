@@ -1,2 +1,7 @@
-extend-select = ["N"]
+extend-select = ["N", "ANN", "TCH"]
 line-length = 100
+
+[flake8-annotations]
+mypy-init-return = true
+suppress-dummy-args = false
+allow-star-arg-any = false

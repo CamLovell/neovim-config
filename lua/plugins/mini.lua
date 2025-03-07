@@ -49,7 +49,7 @@ return {
       require('mini.extra').setup()
 
       -- Extend f, F, t, T accross multiple lines
-      require('mini.jump').setup()
+      -- require('mini.jump').setup()
 
       -- Icon Provider, similar to web-dev-icons but better
       -- NOTE: web-dev-icons is still a dependency of telescope
@@ -62,8 +62,8 @@ return {
       -- require('mini.sessions').setup()
 
       -- Simple file explorer (with toggle mapped to <leader>fd)
-      require('mini.files').setup()
-      vim.keymap.set('n', '<leader>fd', ':lua if not MiniFiles.close() then MiniFiles.open(...) end<CR>', { desc = 'Open [F]ile [D]irectory' })
+      -- require('mini.files').setup()
+      -- vim.keymap.set('n', '<leader>fd', ':lua if not MiniFiles.close() then MiniFiles.open(...) end<CR>', { desc = 'Open [F]ile [D]irectory' })
 
       -- simple indent line only showing current scope
       require('mini.indentscope').setup { draw = { delay = 20, animation = require('mini.indentscope').gen_animation.none() } }
