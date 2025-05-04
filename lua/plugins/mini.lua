@@ -13,10 +13,10 @@ return {
             i = { '@block.inner', '@conditional.inner', '@loop.inner' },
           },
           f = ai.gen_spec.treesitter { a = { '@function.outer', '@method.outer' }, i = { '@function.inner', '@method.outer' } }, -- function
-          c = ai.gen_spec.treesitter { a = '@class.outer', i = '@class.inner' }, -- class
-          t = { '<([%p%w]-)%f[^<%w][^<>]->.-</%1>', '^<.->().*()</[^/]->$' }, -- tags
-          d = { '%f[%d]%d+' }, -- digits
-          e = { -- word with case
+          c = ai.gen_spec.treesitter { a = '@class.outer', i = '@class.inner' },                                                 -- class
+          t = { '<([%p%w]-)%f[^<%w][^<>]->.-</%1>', '^<.->().*()</[^/]->$' },                                                    -- tags
+          d = { '%f[%d]%d+' },                                                                                                   -- digits
+          e = {                                                                                                                  -- word with case
             { '%u[%l%d]+%f[^%l%d]', '%f[%s][%l%d]+%f[^%l%d]', '%f[%p][%l%d]+%f[^%l%d]', '^[%l%d]+%f[^%l%d]' },
             '^().*()$',
           },
@@ -69,7 +69,7 @@ return {
       require('mini.indentscope').setup { draw = { delay = 20, animation = require('mini.indentscope').gen_animation.none() } }
 
       -- Nicer tabline, not that I really use tabs
-      require('mini.tabline').setup { set_vim_settings = false }
+      -- require('mini.tabline').setup { set_vim_settings = false }
 
       -- stuatusline, default with macro recorsding indicator
       require('mini.statusline').setup {
@@ -87,7 +87,7 @@ return {
             local recording = vim.fn.reg_recording()
 
             return MiniStatusline.combine_groups {
-              { hl = mode_hl, strings = { mode } },
+              { hl = mode_hl,                 strings = { mode } },
               { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
               '%<', -- Mark general truncate point
 
@@ -95,7 +95,7 @@ return {
               { hl = 'MiniStatuslineFilename', strings = { recording == '' and filename or string.format('Recording @%s', recording) } },
               '%=', -- End left alignment
               { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
-              { hl = mode_hl, strings = { search, location } },
+              { hl = mode_hl,                  strings = { search, location } },
             }
           end,
         },

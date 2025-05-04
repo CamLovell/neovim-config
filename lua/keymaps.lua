@@ -27,10 +27,14 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Resize windows with Alt hjkl
-vim.keymap.set('n', '<C-Left>', '"<Cmd>vertical resize -" . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Decrease window width' })
-vim.keymap.set('n', '<C-Down>', '"<Cmd>resize -"          . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Decrease window height' })
-vim.keymap.set('n', '<C-Up>', '"<Cmd>resize +"          . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Increase window height' })
-vim.keymap.set('n', '<C-Right>', '"<Cmd>vertical resize +" . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Increase window width' })
+vim.keymap.set('n', '<C-Left>', '"<Cmd>vertical resize -" . v:count1 . "<CR>"',
+  { expr = true, replace_keycodes = false, desc = 'Decrease window width' })
+vim.keymap.set('n', '<C-Down>', '"<Cmd>resize -"          . v:count1 . "<CR>"',
+  { expr = true, replace_keycodes = false, desc = 'Decrease window height' })
+vim.keymap.set('n', '<C-Up>', '"<Cmd>resize +"          . v:count1 . "<CR>"',
+  { expr = true, replace_keycodes = false, desc = 'Increase window height' })
+vim.keymap.set('n', '<C-Right>', '"<Cmd>vertical resize +" . v:count1 . "<CR>"',
+  { expr = true, replace_keycodes = false, desc = 'Increase window width' })
 
 -- Keymaps for splits
 vim.keymap.set('n', '<leader>vs', ':vsplit<CR>', { desc = 'Split the current window vertically' })
@@ -56,6 +60,9 @@ vim.keymap.set('n', '<M-o>', 'o<Esc>', { desc = 'Put empty line below' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move half page up' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move half page down' })
 
+-- Paste without overwriting the clipboard
+vim.keymap.set('n', '<leader>p', '"*p', { desc = 'Paste without overwriting clipboard' })
+
 -- Source current file
 -- vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>')
 
@@ -66,7 +73,8 @@ vim.keymap.set('v', '<leader>x', ':lua<CR>')
 -- TODO: Check if the following can be done "better"
 
 -- Harpoon Keymaps
-vim.keymap.set('n', '<leader>hf', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { desc = 'Find Hapoon Files' })
+vim.keymap.set('n', '<leader>hf', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
+  { desc = 'Find Hapoon Files' })
 vim.keymap.set('n', '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<CR>', { desc = 'Add Harpoon File' })
 vim.keymap.set('n', '<leader>hn', '<cmd>lua require("harpoon.ui").nav_next()<CR>', { desc = 'Next harpoon file' })
 vim.keymap.set('n', '<leader>hp', '<cmd>lua require("harpoon.ui").nav_prev()<CR>', { desc = 'Previous harpoon file' })
@@ -75,7 +83,8 @@ vim.keymap.set('n', '<leader>hp', '<cmd>lua require("harpoon.ui").nav_prev()<CR>
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   callback = function()
-    vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', { buffer = true, desc = 'Toggle markdown preview' })
+    vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>',
+      { buffer = true, desc = 'Toggle markdown preview' })
   end,
 })
 
