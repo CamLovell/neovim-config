@@ -19,9 +19,11 @@ return {
             },
           },
         },
+        branch = 'v1.x',
       },
       {
         'williamboman/mason-lspconfig.nvim',
+        branch = 'v1.x',
         opts = {
           {
             ensure_installed = {
