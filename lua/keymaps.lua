@@ -90,3 +90,6 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Docstring generation
 vim.keymap.set('n', '<leader>gd', "<cmd>lua require('neogen').generate()<CR>", { desc = '[G]enerate [D]ocumentation' })
+
+-- Open Oil in floating mode
+vim.keymap.set('n', '-', '<cmd>Oil --float<CR>', { desc = 'Open Oil in floating mode' })
