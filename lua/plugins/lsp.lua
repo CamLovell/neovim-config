@@ -90,7 +90,7 @@ return {
 
       -- Enable the following language servers
       local servers = {
-        clangd = {},
+        -- clangd = {},
         basedpyright = {
           -- Disable semantic tokens because they SUCK (atleast for basedpyright)
           on_init = function(client)
