@@ -61,12 +61,12 @@ return {
       layouts = {
         {
           elements = {
-            { id = 'scopes', size = 0.25 }, -- Move variables here
-            { id = 'watches', size = 0.25 }, -- Watches
-            { id = 'stacks', size = 0.25 }, -- Call stacks
+            { id = 'scopes',      size = 0.25 }, -- Move variables here
+            { id = 'watches',     size = 0.25 }, -- Watches
+            { id = 'stacks',      size = 0.25 }, -- Call stacks
             { id = 'breakpoints', size = 0.25 }, -- Breakpoints
           },
-          position = 'right', -- Move this panel to the right
+          position = 'right',                    -- Move this panel to the right
           size = 40,
         },
         {

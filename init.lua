@@ -3,11 +3,12 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set custom keymaps and options
-require 'keymaps'
-require 'options'
+require 'core.keymaps'
+require 'core.options'
 
 -- Install lazy and all the plugins
-require 'config.lazy'
+require 'core.lazy'
+require 'core.lsp'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
