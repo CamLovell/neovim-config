@@ -21,6 +21,7 @@ return {
           reportMissingTypeStubs = true,
           reportUnusedVariable = false,
           reportPrivateLocalImportUsage = true,
+          -- reportUnusedParameter = false,
           -- reportUnusedFunction = false,
           -- reportDuplicateImport = false,
           -- reportUnnecessaryCast = false,
