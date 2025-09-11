@@ -83,7 +83,7 @@ vim.keymap.set('n', '<leader>hp', '<cmd>lua require("harpoon.ui").nav_prev()<CR>
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   callback = function()
-    vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>',
+    vim.keymap.set('n', '<leader>mp', '<cmd>RenderMarkdown toggle<CR>',
       { buffer = true, desc = 'Toggle markdown preview' })
   end,
 })
